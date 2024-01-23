@@ -3,12 +3,12 @@ namespace Library
 {
     public class Book
     {
-        public required string Title {get; set;}
-        public required string Author;
+        public string Title {get; set;}
+        public Author Author {get; set;}
         public int Isbn;
         public bool Status;
 
-        public Book(string title, string  author, int isbn, bool status)
+        public Book(string title, Author author, int isbn, bool status)
         {
             Title = title;
             Author = author;

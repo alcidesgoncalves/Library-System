@@ -2,41 +2,29 @@ namespace Library
 {
     public class Author
     {
-        public  string Name {get; set;} 
-        public string? Nacionality {get; set;} 
+        public string Name {get; set;} 
+        public string? Nationality {get; set;} 
         public DateTime Birthdate {get; set;}  
-        public  List<string> PublishedBooks {get; set;} 
+        public List<Book> Books {get; set;} 
          
-        public Author(string name, string? nacionality, DateTime birthDate, List<string> publishedBooks)
+        public Author(string name, string? nationality, DateTime birthDate)
         {
             Name = name;
-            Nacionality = nacionality;
+            Nationality = nationality;
             Birthdate = birthDate;
-            PublishedBooks = publishedBooks;
+            
+            Books = new List<Book>();
         }
 
         public override string ToString()
         {
-            string books = "Livros Publicados: ";
-            foreach (var book in PublishedBooks)
-        {
-            books += book + ", ";
+            return $"{Name}, {Nationality}, {Birthdate}";
         }
 
-        // Remove a última vírgula e espaço
-        books = books.TrimEnd(',', ' ');
-            return $"{Name}, {Nacionality}, {Birthdate}, {books}";
-        }
-
-        public void AddBook(string bookName)
+        public void AddBook(string title, int isbn, bool status)
         {
-            PublishedBooks.Add(bookName);
-        }
-
-        public void RemoveBook()
-        {
-            var array = PublishedBooks.Count;
-            PublishedBooks.RemoveAt(array-1);
+            var book = new Book(title, this, isbn, status);
+            Books.Add(book);
         }
     }
 }
