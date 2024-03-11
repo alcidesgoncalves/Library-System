@@ -12,10 +12,10 @@ namespace Library
     {
         public string Title {get; set;}
         public Author Author {get; set;}
-        public int Isbn;
+        public long Isbn;
         public EStatus Status;
 
-        public Book(string title, Author author, int isbn, EStatus status)
+        public Book(string title, Author author, long isbn, EStatus status)
         {
             Title = title;
             Author = author;
@@ -28,20 +28,25 @@ namespace Library
             return $"{Title}, {Author.Name}, {Isbn}, {Status}";
         }
 
-        //Métodos Emprestar livro, Devolver livro e Reservar livro.
-        public void BorrowBook()
+        public EStatus BorrowBook()
         {
             //alterar status de disponibilidade para EStatus.Emprestado
+            Status = EStatus.Emprestado;
+            return Status;
         }
 
-        public void ReturnBook()
+        public EStatus ReturnBook()
         {
             //alterar status de disponibilidade para EStatus.Disponivel
+            Status = EStatus.Disponivel;
+            return Status;
         }
 
-        public void ReserveBook()
+        public EStatus ReserveBook()
         {
             //alterar status de disponibilidade para EStatus.Reservado
+            Status = EStatus.Reservado;
+            return Status;
         }
     }
 }
