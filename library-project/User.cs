@@ -2,7 +2,7 @@ namespace Library
 {
     public class User
     {
-        public required string Name;
+        public string Name;
         public int ID; 
         public List<Book> BorrowedBooks;
         public List<Book> BorrowHistory;
@@ -13,6 +13,11 @@ namespace Library
             ID = id; 
             BorrowedBooks = new List<Book>();
             BorrowHistory = new List<Book>();
+        }
+
+        public override string ToString()
+        {
+            return $"Nome do usuário: {Name}, ID do usuário: {ID}";
         }
 
         public EStatus RealizarEmprestimo(Book book)
@@ -37,9 +42,9 @@ namespace Library
             {
                 if(BorrowedBook.Equals(book))
                 {
-                    BorrowedBook.Remove(BorrowedBook);
-                    book.ReturnBook()
-                    BorrowHistory.Add(livro);
+                    BorrowedBooks.Remove(BorrowedBook);
+                    book.ReturnBook();
+                    BorrowHistory.Add(book);
                     LivroEncontrado = true;
                     break;
                 }
@@ -48,7 +53,7 @@ namespace Library
             {
                 Console.WriteLine("Você não possui este livro para devolver");
             }
-            return livro.Status;
+            return book.Status;
         }
 
         public EStatus ReservarLivro(Book book)
