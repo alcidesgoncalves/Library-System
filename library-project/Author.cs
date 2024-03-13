@@ -21,7 +21,7 @@ namespace Library
             return $"{Name}, {Nationality}, {Birthdate}";
         }
 
-        public void AddBook(string title, int isbn, EStatus status)
+        public void AddBook(string title, long isbn, EStatus status)
         {
             var book = new Book(title, this, isbn, status);
             Books.Add(book);
