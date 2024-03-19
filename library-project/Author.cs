@@ -3,25 +3,23 @@ namespace Library
     public class Author
     {
         public string Name {get; set;} 
-        public string? Nationality {get; set;} 
-        public DateTime Birthdate {get; set;}  
+        public string? Nationality {get; set;}  
         public List<Book> Books {get; set;} 
          
-        public Author(string name, string? nationality, DateTime birthDate)
+        public Author(string name, string? nationality)
         {
             Name = name;
             Nationality = nationality;
-            Birthdate = birthDate;
             
             Books = new List<Book>();
         }
 
         public override string ToString()
         {
-            return $"{Name}, {Nationality}, {Birthdate}";
+            return $"{Name}, {Nationality}";
         }
 
-        public void AddBook(string title, long isbn, EStatus status)
+        public void AddWrittenBook(string title, long isbn, EStatus status)
         {
             var book = new Book(title, this, isbn, status);
             Books.Add(book);

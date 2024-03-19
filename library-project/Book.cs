@@ -14,6 +14,7 @@ namespace Library
         public Author Author {get; set;}
         public long Isbn;
         public EStatus Status;
+        public Library BorrowedFromLibrary {get; set;}
 
         public Book(string title, Author author, long isbn, EStatus status)
         {
@@ -28,18 +29,36 @@ namespace Library
             return $"{Title}, {Author.Name}, {Isbn}, {Status}";
         }
 
-        public EStatus BorrowBook()
+        public EStatus BorrowBook(Library library)
         {
             //alterar status de disponibilidade para EStatus.Emprestado
-            Status = EStatus.Emprestado;
-            return Status;
+            if (Status == EStatus.Disponivel)
+            {
+                Status = EStatus.Emprestado;
+                BorrowedFromLibrary = library;
+                return Status;
+            }
+            else
+            {
+                Console.WriteLine("O livro não está disponível para empréstimo.");
+                return Status;
+            }
         }
 
         public EStatus ReturnBook()
         {
             //alterar status de disponibilidade para EStatus.Disponivel
-            Status = EStatus.Disponivel;
-            return Status;
+            if (Status == EStatus.Emprestado)
+            {
+                Status = EStatus.Disponivel;
+                BorrowedFromLibrary = null;
+                return Status;
+            }
+            else
+            {
+                Console.WriteLine("O livro não foi emprestado.");
+                return Status;
+            }
         }
 
         public EStatus ReserveBook()
