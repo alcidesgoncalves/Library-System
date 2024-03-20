@@ -14,7 +14,7 @@ namespace Library
         public Author Author {get; set;}
         public long Isbn;
         public EStatus Status;
-        public Library BorrowedFromLibrary {get; set;}
+        public Library? BorrowedFromLibrary {get; set;}
 
         public Book(string title, Author author, long isbn, EStatus status)
         {

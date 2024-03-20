@@ -14,7 +14,7 @@ namespace Library
             AuthorList = new List<Author>();
         }
 
-        public void AddLibraryBook(Book book)
+        public void AddLibraryBook(Book book) //Adiciona Livro na Biblioteca
         {
             AvailableBooks.Add(book);
         }
@@ -38,6 +38,7 @@ namespace Library
             if(book.BorrowBook(this) == EStatus.Emprestado)
             {
                 BorrowBooks.Add(book);
+                Console.WriteLine($"Você pegou emprestado o livro: {book.Title}");
             }
         }
 
@@ -46,6 +47,7 @@ namespace Library
             if(book.ReturnBook() == EStatus.Disponivel)
             {
                 BorrowBooks.Remove(book);
+                Console.WriteLine($"Você devolveu o livro: {book.Title}");
             }
         }
     }
